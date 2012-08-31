@@ -1,27 +1,27 @@
 # pythonchallenge 10
 # http://www.pythonchallenge.com/pc/return/bull.html
 #
-#
-# sequence: a = [1, 11, 21, 1211, 111221,
-# 1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211...
+# sequence: a = [1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211...
 #
 # puzzle: len(a[30]) = ?
 
 import re
 pattern = re.compile(r'(\d)\1*')
 
-
+# repl function for regexp.sub
 def repl(match):
     s = match.group(0)
     assert s
     return "{0:d}{1:s}".format(len(s), s[0])
 
+# read a digit string, otherwise, the next string
 def read_digit_str(str):
     # must be a digit string
     assert str.isdigit()
 
     return pattern.sub(repl, str)
 
+# generators
 def sequence():
     s = "1"
     while True:
